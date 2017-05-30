@@ -111,9 +111,7 @@ appModule.component('appContainer', {
       }
       
       this.handleDelete = function(element) {
-        console.log('element',element)
         let index = this.elementInData(element.id);
-        console.log(index);
         if(index){
           this.deleteElem(index)
         }
