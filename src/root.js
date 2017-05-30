@@ -3,7 +3,7 @@ const appModule = angular.module('app',[]);
 appModule.component('appForm', {
   template: `
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-2">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
         <div style="border:2px solid blue;margin:5px;">
           <h3>componente Form</h3>
         </div>
@@ -15,7 +15,7 @@ appModule.component('appForm', {
 appModule.component('appList', {
   template: `
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-2">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
         <div style="border:2px solid red;margin:5px;">
           <h3>componente List</h3>
         </div>
