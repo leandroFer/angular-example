@@ -8,7 +8,7 @@ appModule.component('appForm', {
   template: `
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
-        <form class="form-inline">
+        <form class="form-inline" name="appForm" ng-submit="$ctrl.submit()">
           <div ng-repeat="campo in $ctrl.campos">
             <div class="col-md-3">
               <label>{{campo.placeholder}}</label>
@@ -20,7 +20,9 @@ appModule.component('appForm', {
               </div>
             </div>
           </div>
-          <button type="submit" ng-click="$ctrl.submit()" class="btn btn-primary">Add</button>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>  
         </form>
       </div>
     </div>
