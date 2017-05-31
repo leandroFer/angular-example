@@ -27,8 +27,10 @@ appModule.component('appForm', {
       </div>
     </div>
   `,
-  controller: function() {
-    this.submit = function() {
+  controller: class AppForm {
+    constructor(){}
+    
+    submit() {
       this.onAdd({$elem : {
         data: this.inputsData
       }})
@@ -64,8 +66,9 @@ appModule.component('appTable', {
       </div>
     </div>  
   `,
-  controller: function() {
-    this.delete = function(item){
+  controller: class AppTable {
+    constructor(){}
+    delete(item){
       this.onDelete({$element:{id: item.id}})
     }
   }
@@ -82,15 +85,20 @@ appModule.component('appContainer', {
       <app-table columns="$ctrl.columns" data="$ctrl.data" on-delete="$ctrl.handleDelete($element)"/>
     </div>
     `,
-    controller: function() {
-      this.$onInit = function(){
-          this.campos = [{placeholder:'nombre',required:true},{placeholder:'apellido',required:true},{placeholder:'edad'}];
-          this.columns = ['id','nombre','apellido','edad'];
-          this.data = [{id:1,nombre:'Leandro',apellido:'Fernandez',edad:'22'},
-                        {id:2,nombre:'Ezequiel',apellido:'Cabrera',edad:'30'}]
+    controller: class AppContainer {
+      constructor(){
+        // instanciar servicios o otros imports de que use la clase, bindings NO ACCESIBLES
+        this.campos = [{placeholder:'nombre',required:true},{placeholder:'apellido',required:true},{placeholder:'edad'}];
+        this.columns = ['id','nombre','apellido','edad'];
+        this.data = [{id:1,nombre:'Leandro',apellido:'Fernandez',edad:'22'},
+                      {id:2,nombre:'Ezequiel',apellido:'Cabrera',edad:'30'}]
       }
       
-      this.handleAdd = function(elem) {
+      $onInit(){
+        //acciones relacionadas con los bindings que recibe el componente 
+      }
+      
+      handleAdd(elem) {
         let newId = this.data.slice(1)[0].id + 1
         this.data.push({
           id : newId,
@@ -100,17 +108,15 @@ appModule.component('appContainer', {
         })
       } 
       
-      this.elementInData = function(id) {
-        return this.data.find(function(element){
-          return (element.id === id)
-        })
+      elementInData(id) {
+        return this.data.find(element => element.id === id)
       }
       
-      this.deleteElem = function(index) {
+      deleteElem(index) {
         this.data.splice(index,1);
       }
       
-      this.handleDelete = function(element) {
+      handleDelete(element) {
         let index = this.elementInData(element.id);
         if(index){
           this.deleteElem(index)
