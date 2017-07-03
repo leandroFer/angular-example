@@ -92,6 +92,7 @@ appModule.component('appContainer', {
         this.columns = ['id','nombre','apellido','edad'];
         this.data = [{id:1,nombre:'Leandro',apellido:'Fernandez',edad:'22'},
                       {id:2,nombre:'Ezequiel',apellido:'Cabrera',edad:'30'}]
+        this.nextId = this.data.slice(-1)[0].id + 1;
       }
       
       $onInit(){
@@ -99,13 +100,13 @@ appModule.component('appContainer', {
       }
       
       handleAdd(elem) {
-        let newId = this.data.slice(1)[0].id + 1
         this.data.push({
-          id : newId,
+          id : this.nextId,
           nombre : elem.data.nombre,
           apellido : elem.data.apellido,
           edad : elem.data.edad
         })
+        this.nextId++
       } 
       
       elementInData(id) {
