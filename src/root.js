@@ -98,22 +98,16 @@ appModule.component('appContainer', {
           apellido : elem.data.apellido,
           edad : elem.data.edad
         })
-        this.nextId++
+        this.nextId++;
       } 
-      
-      this.elementInData = function(id) {
-        return this.data.find(function(element){
-          return (element.id === id)
-        })
-      }
       
       this.deleteElem = function(index) {
         this.data.splice(index,1);
       }
       
       this.handleDelete = function(element) {
-        let index = this.elementInData(element.id);
-        if(index){
+        let index = this.data.map(elem => elem.id).indexOf(element.id)
+        if(index !== -1){
           this.deleteElem(index)
         }
       }
