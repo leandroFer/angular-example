@@ -99,28 +99,23 @@ appModule.component('appContainer', {
         //acciones relacionadas con los bindings que recibe el componente 
       }
       
-      handleAdd(elem) {
-        
+      handleAdd({data}) {
         this.data.push({
           id : this.nextId,
-          nombre : elem.data.nombre,
-          apellido : elem.data.apellido,
-          edad : elem.data.edad
+          nombre : data.nombre,
+          apellido : data.apellido,
+          edad : data.edad
         })
         this.nextId++;
       } 
-      
-      elementInData(id) {
-        return this.data.find(element => element.id === id)
-      }
       
       deleteElem(index) {
         this.data.splice(index,1);
       }
       
-      handleDelete(element) {
-        let index = this.elementInData(element.id);
-        if(index){
+      handleDelete({id}) {
+        let index = this.data.map(elem => elem.id).indexOf(id)
+        if(index !== -1){
           this.deleteElem(index)
         }
       }
