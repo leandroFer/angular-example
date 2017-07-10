@@ -106,7 +106,7 @@ appModule.component('appContainer', {
       }
       
       this.handleDelete = function(element) {
-        let index = this.data.map(elem => elem.id).indexOf(element.id)
+        let index = this.data.map(function(elem){ return elem.id}).indexOf(element.id)
         if(index !== -1){
           this.deleteElem(index)
         }
